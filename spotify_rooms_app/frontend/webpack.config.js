@@ -1,6 +1,3 @@
-// Webpack bundles all the JavaScript intop one file
-// Serves this one file to the browser
-
 const path = require("path");
 const webpack = require("webpack");
 
@@ -28,7 +25,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         // This has effect on the react lib size
-        NODE_ENV: JSON.stringify("production"),
+        NODE_ENV: JSON.stringify("development"),
       },
     }),
   ],

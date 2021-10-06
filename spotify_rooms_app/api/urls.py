@@ -2,8 +2,10 @@
 
 
 from django.urls import path
-from .views import RoomView # Import the RoomView class from /views.py
+from .views import RoomView, CreateRoomView # Import the RoomView class from /views.py
+
 
 urlpatterns = [
-    path("room", RoomView.as_view()) 
+    path("room", RoomView.as_view()),
+    path("create", CreateRoomView.as_view())  
 ]

@@ -24,7 +24,7 @@ def generateRoomCode():
 
 # Model for a 'music room'
 class Room(models.Model):
-    room_code = models.CharField(max_length=4, default="", unique=True) # Unique code to identify a room
+    room_code = models.CharField(max_length=4, default=generateRoomCode, unique=True) # Unique code to identify a room
     host = models.CharField(max_length=50, unique=True)                 # Unique code to identify the host
     can_pause = models.BooleanField(null=False, default=False)          # Flag to determine if guests can pause the music
     votes_to_skip = models.IntegerField(null=False, default=1)          # Number of votes needed to skip current song

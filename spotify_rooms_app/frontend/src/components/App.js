@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import HomePage from "./HomePage";
 
 export default class App extends Component {
   constructor(props) {
@@ -7,7 +8,12 @@ export default class App extends Component {
   }
 
   render() {
-    return <h1>Testing React Code</h1>;
+    return (
+      // Need the <div> since the return requires an exterior wrapper, basically need to return '1' parent thing
+      <div>
+        <HomePage />
+      </div>
+    );
   }
 }
 

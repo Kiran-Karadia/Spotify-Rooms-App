@@ -10,3 +10,8 @@ class RoomSerializer(serializers.ModelSerializer):
         # "id" field is automatically added as a unique key for every room model
         fields = ("id", "room_code", "host", "can_pause", "votes_to_skip", "created_at")
 
+# Ensure data in post request is valid and fits the correct ields
+class CreateRoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = ("can_pause", "votes_to_skip")
