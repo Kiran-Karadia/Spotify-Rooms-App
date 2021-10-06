@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     return (
       // Need the <div> since the return requires an exterior wrapper, basically need to return '1' parent thing
-      <div>
+      <div className="center">
         <HomePage />
       </div>
     );

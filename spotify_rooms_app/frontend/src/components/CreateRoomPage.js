@@ -49,13 +49,13 @@ export default class CreateRoomPage extends Component {
 
   render() {
     return (
-      <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
+      <Grid container spacing={1} align="center">
+        <Grid item xs={12}>
           <Typography component="h4" variant="h4">
             Create A Room
           </Typography>
         </Grid>
-        <Grid item xs={12} align="center">
+        <Grid item xs={12}>
           <FormControl component="fieldset">
             <FormHelperText component="div">
               <div align="center">Guest Control of Playback State</div>
@@ -80,7 +80,7 @@ export default class CreateRoomPage extends Component {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} align="center">
+        <Grid item xs={12}>
           <FormControl>
             <TextField
               required={true}
@@ -97,7 +97,7 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
           </FormControl>
         </Grid>
-        <Grid item xs={12} align="center">
+        <Grid item xs={12}>
           <Button
             color="primary"
             variant="contained"
@@ -106,7 +106,7 @@ export default class CreateRoomPage extends Component {
             Create A Room
           </Button>
         </Grid>
-        <Grid item xs={12} align="center">
+        <Grid item xs={12}>
           <Button variant="contained" to="/" component={Link}>
             Back
           </Button>

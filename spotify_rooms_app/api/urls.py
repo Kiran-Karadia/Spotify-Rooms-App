@@ -2,11 +2,12 @@
 
 
 from django.urls import path
-from .views import RoomView, CreateRoomView, GetRoom # Import views from /views.py
+from .views import RoomView, CreateRoomView, GetRoom, JoinRoomView # Import views from /views.py
 
 
 urlpatterns = [
     path("room", RoomView.as_view()),
     path("create-room", CreateRoomView.as_view()),
-    path("get-room", GetRoom.as_view())
+    path("get-room", GetRoom.as_view()),
+    path("join-room", JoinRoomView.as_view())
 ]
