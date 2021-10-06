@@ -42,9 +42,9 @@ export default class CreateRoomPage extends Component {
         can_pause: this.state.can_pause,
       }),
     };
-    fetch("/api/create", requestOptions)
+    fetch("/api/create-room", requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => this.props.history.push("/room/" + data.room_code));
   };
 
   render() {
