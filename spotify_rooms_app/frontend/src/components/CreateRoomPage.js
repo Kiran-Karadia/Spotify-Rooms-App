@@ -10,9 +10,10 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Collapse } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 
 export default class CreateRoomPage extends Component {
-  static default_props = {
+  static defaultProps = {
     can_pause: true,
     votes_to_skip: 2,
     update: false,
@@ -38,7 +39,7 @@ export default class CreateRoomPage extends Component {
 
   handleCanPauseChange = (e) => {
     this.setState({
-      can_pause: e.target.value,
+      can_pause: e.target.value === "true" ? true : false,
     });
   };
 
@@ -87,7 +88,7 @@ export default class CreateRoomPage extends Component {
           <Button
             color="primary"
             variant="contained"
-            onClick={this.handleRoomBtnClicked}
+            onClick={this.handleCreateRoomBtnClicked}
           >
             Create A Room
           </Button>
@@ -101,7 +102,7 @@ export default class CreateRoomPage extends Component {
     );
   };
 
-  renderUpdateBtns() {
+  renderUpdateBtns = () => {
     return (
       <Grid item xs={12} align="center">
         <Button
@@ -113,9 +114,9 @@ export default class CreateRoomPage extends Component {
         </Button>
       </Grid>
     );
-  }
+  };
 
-  render() {
+  render = () => {
     const title_text = this.props.update ? "Update Room" : "Create a Room";
     return (
       <Grid container spacing={1} align="center">
@@ -154,7 +155,7 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
             <RadioGroup
               row
-              value={this.props.can_pause.toString()}
+              defaultValue={this.props.can_pause.toString()}
               onChange={this.handleCanPauseChange}
             >
               <FormControlLabel
@@ -192,5 +193,5 @@ export default class CreateRoomPage extends Component {
         {this.props.update ? this.renderUpdateBtns() : this.renderCreateBtns()}
       </Grid>
     );
-  }
+  };
 }

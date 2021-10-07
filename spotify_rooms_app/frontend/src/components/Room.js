@@ -16,7 +16,7 @@ export default class Room extends Component {
     this.getRoomDetails();
   }
 
-  getRoomDetails() {
+  getRoomDetails = () => {
     fetch("/api/get-room" + "?room_code=" + this.room_code)
       .then((response) => {
         if (!response.ok) {
@@ -32,7 +32,7 @@ export default class Room extends Component {
           is_host: data.is_host,
         });
       });
-  }
+  };
 
   leaveBtnClicked = () => {
     const requestOptions = {
@@ -60,7 +60,7 @@ export default class Room extends Component {
             votes_to_skip={this.state.votes_to_skip}
             can_pause={this.state.can_pause}
             room_code={this.room_code}
-            updateCallback={null}
+            updateCallback={this.getRoomDetails}
           />
         </Grid>
         <Grid item xs={12}>
@@ -74,7 +74,7 @@ export default class Room extends Component {
     );
   };
 
-  renderSettingsBtn() {
+  renderSettingsBtn = () => {
     return (
       <Grid item xs={12} align="center">
         <Button
@@ -86,9 +86,9 @@ export default class Room extends Component {
         </Button>
       </Grid>
     );
-  }
+  };
 
-  render() {
+  render = () => {
     if (this.state.show_settings) {
       return this.renderSettings();
     }
@@ -122,5 +122,5 @@ export default class Room extends Component {
         </Grid>
       </Grid>
     );
-  }
+  };
 }
