@@ -14,7 +14,7 @@ import Alert from "@material-ui/lab/Alert";
 
 export default class CreateRoomPage extends Component {
   static defaultProps = {
-    can_pause: false,
+    can_pause: true,
     votes_to_skip: 2,
     update: false,
     room_code: null,
@@ -39,7 +39,7 @@ export default class CreateRoomPage extends Component {
 
   handleCanPauseChange = (e) => {
     this.setState({
-      can_pause: e.target.value === "true" ? true : false,
+      can_pause: e.target.value === "true" ? "true" : "false",
     });
   };
 
@@ -116,7 +116,7 @@ export default class CreateRoomPage extends Component {
     );
   };
 
-  render = () => {
+  render() {
     const title_text = this.props.update ? "Update Room" : "Create a Room";
     return (
       <Grid container spacing={1} align="center">
@@ -193,5 +193,5 @@ export default class CreateRoomPage extends Component {
         {this.props.update ? this.renderUpdateBtns() : this.renderCreateBtns()}
       </Grid>
     );
-  };
+  }
 }
