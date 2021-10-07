@@ -43,10 +43,10 @@ def spotifyCallback(request, format=None):
     expires_in = response.get("expires_in")
     error = response.get("error")
 
-    if not request.session.exists(request.sessions.session_key):
+    if not request.session.exists(request.session.session_key):
         request.session.create()
 
-    updateOrCreateUserTokens(session_key=request.sessions.session_key, access_token=access_token, token_type=token_type, expires_in=expires_in)
+    updateOrCreateUserTokens(session_key=request.session.session_key, access_token=access_token, token_type=token_type, refresh_token=refresh_token, expires_in=expires_in)
 
     return redirect("frontend:")
 

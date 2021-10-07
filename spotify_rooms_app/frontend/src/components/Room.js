@@ -11,10 +11,27 @@ export default class Room extends Component {
       can_pause: false,
       is_host: false,
       show_settings: false,
+      spotify_auth: false,
     };
     this.room_code = this.props.match.params.room_code;
     this.getRoomDetails();
   }
+
+  authenticateSpotify = () => {
+    fetch("/spotify/is-authenticated")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ spotify_auth: data.status });
+        console.log(data.status);
+        if (!data.status) {
+          fetch("/spotify/get-auth-url")
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.replace(data.url);
+            });
+        }
+      });
+  };
 
   getRoomDetails = () => {
     fetch("/api/get-room" + "?room_code=" + this.room_code)
@@ -31,6 +48,9 @@ export default class Room extends Component {
           can_pause: data.can_pause,
           is_host: data.is_host,
         });
+        if (this.state.is_host) {
+          this.authenticateSpotify(); // Call this here becuase we need to wait for the room details, which tells us if the current user is a host
+        }
       });
   };
 
