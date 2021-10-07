@@ -14,7 +14,7 @@ import Alert from "@material-ui/lab/Alert";
 
 export default class CreateRoomPage extends Component {
   static defaultProps = {
-    can_pause: true,
+    can_pause: false,
     votes_to_skip: 2,
     update: false,
     room_code: null,
