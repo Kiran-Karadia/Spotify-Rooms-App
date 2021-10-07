@@ -1,4 +1,4 @@
-spotify_rooms_app/api/__pycache__/
+spotify_rooms_app/api/__pycache__/*
 spotify_rooms_app/frontend/__pycache__/
 spotify_rooms_app/__pycache__/
 spotify_rooms_app/frontend/node_modules/
