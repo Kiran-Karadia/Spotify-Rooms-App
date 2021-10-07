@@ -52,6 +52,12 @@ export default class HomePage extends Component {
       </Grid>
     );
   }
+
+  clearRoomCode = () => {
+    this.setState({
+      room_code: null,
+    });
+  };
   render() {
     // Create a switch statement that routes to the correct page depending on the current url
     // Need the 'exact' word since it is being checked first and it will consider '/xxx' to match with '/'
@@ -71,7 +77,12 @@ export default class HomePage extends Component {
           ></Route>
           <Route path="/join" component={JoinRoomPage} />
           <Route path="/create" component={CreateRoomPage} />
-          <Route path="/room/:room_code" component={Room} />
+          <Route
+            path="/room/:room_code"
+            render={(props) => {
+              return <Room {...props} leaveRoomCallback={this.clearRoomCode} />;
+            }}
+          />
         </Switch>
       </Router>
     );

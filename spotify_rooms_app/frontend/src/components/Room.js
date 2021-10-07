@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Grid, Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export default class Room extends Component {
   constructor(props) {
@@ -14,7 +16,13 @@ export default class Room extends Component {
 
   getRoomDetails() {
     fetch("/api/get-room" + "?room_code=" + this.room_code)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          this.props.leaveRoomCallback();
+          this.props.history.push("/");
+        }
+        return response.json();
+      })
       .then((data) => {
         this.setState({
           votes_to_skip: data.votes_to_skip,
@@ -24,14 +32,46 @@ export default class Room extends Component {
       });
   }
 
+  leaveBtnClicked = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/api/leave-room", requestOptions).then((_response) => {
+      this.props.leaveRoomCallback();
+      this.props.history.push("/");
+    });
+  };
+
   render() {
     return (
-      <div>
-        <h3>{this.room_code}</h3>
-        <p>Votes: {this.state.votes_to_skip}</p>
-        <p>Can Pause: {this.state.can_pause.toString()}</p>
-        <p>Host: {this.state.is_host.toString()}</p>
-      </div>
+      <Grid container spacing={1} align="center">
+        <Grid item xs={12}>
+          <Typography variant="h4" component="h4">
+            Code: {this.room_code}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="h6">
+            Votes: {this.state.votes_to_skip}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="h6">
+            Can Pause: {this.state.can_pause.toString()}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="h6">
+            Host: {this.state.is_host.toString()}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" onClick={this.leaveBtnClicked}>
+            Leave Room
+          </Button>
+        </Grid>
+      </Grid>
     );
   }
 }
