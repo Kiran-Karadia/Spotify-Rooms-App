@@ -9,15 +9,24 @@ import { Link } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Collapse } from "@material-ui/core";
 
 export default class CreateRoomPage extends Component {
-  defaultVotes = 2;
+  static default_props = {
+    can_pause: true,
+    votes_to_skip: 2,
+    update: false,
+    room_code: null,
+    updateCallback: () => {},
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      can_pause: true,
-      votes_to_skip: this.defaultVotes,
+      can_pause: this.props.can_pause,
+      votes_to_skip: this.props.votes_to_skip,
+      error_msg: "",
+      success_msg: "",
     };
   }
 
@@ -33,7 +42,7 @@ export default class CreateRoomPage extends Component {
     });
   };
 
-  handleRoomBtnClicked = () => {
+  handleCreateRoomBtnClicked = () => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,12 +56,95 @@ export default class CreateRoomPage extends Component {
       .then((data) => this.props.history.push("/room/" + data.room_code));
   };
 
-  render() {
+  handleUpdateBtnClicked = () => {
+    const requestOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        votes_to_skip: this.state.votes_to_skip,
+        can_pause: this.state.can_pause,
+        room_code: this.props.room_code,
+      }),
+    };
+    fetch("/api/update-room", requestOptions).then((response) => {
+      if (response.ok) {
+        this.setState({
+          success_msg: "Room updated successfully!",
+        });
+      } else {
+        this.setState({
+          error_msg: "Error updating room...",
+        });
+      }
+      this.props.updateCallback();
+    });
+  };
+
+  renderCreateBtns = () => {
     return (
       <Grid container spacing={1} align="center">
         <Grid item xs={12}>
-          <Typography component="h4" variant="h4">
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={this.handleRoomBtnClicked}
+          >
             Create A Room
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" to="/" component={Link}>
+            Back
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  };
+
+  renderUpdateBtns() {
+    return (
+      <Grid item xs={12} align="center">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={this.handleUpdateBtnClicked}
+        >
+          Update Room
+        </Button>
+      </Grid>
+    );
+  }
+
+  render() {
+    const title_text = this.props.update ? "Update Room" : "Create a Room";
+    return (
+      <Grid container spacing={1} align="center">
+        <Grid item xs={12}>
+          <Collapse
+            in={this.state.error_msg != "" || this.state.success_msg != ""}
+          >
+            {this.state.success_msg != "" ? (
+              <Alert
+                severity="success"
+                onClose={() => {
+                  this.setState({ success_msg: "" });
+                }}
+              >
+                {this.state.success_msg}
+              </Alert>
+            ) : (
+              <Alert
+                severity="error"
+                onClose={() => {
+                  this.setState({ error_msg: "" });
+                }}
+              >
+                {this.state.error_msg}
+              </Alert>
+            )}
+          </Collapse>
+          <Typography component="h4" variant="h4">
+            {title_text}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -62,7 +154,7 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
             <RadioGroup
               row
-              defaultValue="true"
+              value={this.props.can_pause.toString()}
               onChange={this.handleCanPauseChange}
             >
               <FormControlLabel
@@ -85,7 +177,7 @@ export default class CreateRoomPage extends Component {
             <TextField
               required={true}
               type="number"
-              defaultValue={this.defaultVotes}
+              defaultValue={this.state.votes_to_skip}
               onChange={this.handleVotesChange}
               inputProps={{
                 min: 1,
@@ -97,20 +189,7 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
           </FormControl>
         </Grid>
-        <Grid item xs={12}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={this.handleRoomBtnClicked}
-          >
-            Create A Room
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" to="/" component={Link}>
-            Back
-          </Button>
-        </Grid>
+        {this.props.update ? this.renderUpdateBtns() : this.renderCreateBtns()}
       </Grid>
     );
   }
