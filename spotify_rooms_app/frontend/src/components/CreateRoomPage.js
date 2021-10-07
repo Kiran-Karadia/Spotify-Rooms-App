@@ -155,7 +155,7 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
             <RadioGroup
               row
-              defaultValue={this.props.can_pause.toString()}
+              value={this.state.can_pause.toString()}
               onChange={this.handleCanPauseChange}
             >
               <FormControlLabel
