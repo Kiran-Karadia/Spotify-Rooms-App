@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AuthURL, spotifyCallback, IsAuthenticated
+from .views import *
 
 
 # All of these urls link to index.html
@@ -7,5 +7,7 @@ from .views import AuthURL, spotifyCallback, IsAuthenticated
 urlpatterns = [
     path("get-auth-url", AuthURL.as_view()),
     path("redirect", spotifyCallback),
-    path("is-authenticated", IsAuthenticated.as_view())
+    path("is-authenticated", IsAuthenticated.as_view()),
+    path("current-song", CurrentSong.as_view())
+
 ]
