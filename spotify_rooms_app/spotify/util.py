@@ -50,7 +50,6 @@ def refreshToken(session_key):
     }).json()
 
     access_token = response.get("access_token")
-    refresh_token = response.get("refresh_token")
     expires_in = response.get("expires_in")
     token_type = response.get("token_type")
 
@@ -72,3 +71,8 @@ def executeSpotifyApiRequest(session_key, endpoint, post_=False, put_=False):
     except:
         return {'Error': 'Issue with request'}
 
+def playSong(session_key):
+    return executeSpotifyApiRequest(session_key, "player/play", put_=True)
+
+def pauseSong(session_key):
+    return executeSpotifyApiRequest(session_key, "player/pause", put_=True)
