@@ -29,3 +29,4 @@ class Room(models.Model):
     can_pause = models.BooleanField(null=False, default=False)          # Flag to determine if guests can pause the music
     votes_to_skip = models.IntegerField(null=False, default=1)          # Number of votes needed to skip current song
     created_at = models.DateTimeField(auto_now_add=True)                # Automatically get date and time info when a room is created
+    current_song = models.CharField(max_length=50, null=True)           # Store the currently playing song
