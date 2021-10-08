@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid, Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CreateRoomPage from "./CreateRoomPage";
+import MusicDisplay from "./MusicDisplay";
 
 export default class Room extends Component {
   constructor(props) {
@@ -12,9 +13,20 @@ export default class Room extends Component {
       is_host: false,
       show_settings: false,
       spotify_auth: false,
+      song: {}, // Store details about the song in the state, so that a new song will auto updat on the room page
     };
     this.room_code = this.props.match.params.room_code;
     this.getRoomDetails();
+  }
+
+  componentDidMount() {
+    // When this component loads
+    this.interval = setInterval(this.getCurrentSong, 1000); // Call this function every 1000ms (1 second)
+  }
+
+  componentWillUnmount() {
+    // When the component is destroyed
+    clearInterval(this.interval); // Clear interval
   }
 
   authenticateSpotify = () => {
@@ -22,7 +34,6 @@ export default class Room extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ spotify_auth: data.status });
-        console.log(data.status);
         if (!data.status) {
           fetch("/spotify/get-auth-url")
             .then((response) => response.json())
@@ -30,6 +41,21 @@ export default class Room extends Component {
               window.location.replace(data.url);
             });
         }
+      });
+  };
+
+  getCurrentSong = () => {
+    fetch("/spotify/current-song")
+      .then((response) => {
+        if (!response.ok) {
+          return {};
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        this.setState({ song: data });
+        console.log(data);
       });
   };
 
@@ -119,6 +145,7 @@ export default class Room extends Component {
             Code: {this.room_code}
           </Typography>
         </Grid>
+        <MusicDisplay {...this.state.song} />
         {this.state.is_host ? this.renderSettingsBtn() : null}
         <Grid item xs={12}>
           <Button variant="contained" onClick={this.leaveBtnClicked}>
