@@ -7,13 +7,21 @@ Host of the room can edit settings such as allowing guests to play/pause and the
 (Host must have a premium spotify account)
 
 
-To run the app:
+To run the app (WINDOWS):
 1. Create a folder somewhere you'd like to store the project
 2. Use git clone https://github.com/Kiran-Karadia/Spotify-Rooms-App.git
-3. Create a new environment using conda create --name *name_of_env* python
-4. Activate the environment with conda activate *name_of_env*
-5. Change the current directory to the spotify_rooms_app folder using cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
+3. Create a new environment using 
+```
+conda create --name *name_of_env* python
+```
+5. Activate the environment with conda activate *name_of_env*
+6. Change the current directory to the spotify_rooms_app folder using cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
 7. Install requirements using pip install -r requirements.txt
-8. To run the server, use python manage.py runserver
-9. On a browser, go to 127.0.0.1:8000
+8. To run the server, cd to where manage.py is located and use python manage.py runserver
+9. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
+  9.1 To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
+  9.2 Create a new app
+  9.3 On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
+  9.4 Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
+10. On a browser, go to 127.0.0.1:8000
 
