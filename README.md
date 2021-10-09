@@ -14,14 +14,26 @@ To run the app (WINDOWS):
 ```
 conda create --name *name_of_env* python
 ```
-5. Activate the environment with conda activate *name_of_env*
-6. Change the current directory to the spotify_rooms_app folder using cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
-7. Install requirements using pip install -r requirements.txt
-8. To run the server, cd to where manage.py is located and use python manage.py runserver
-9. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
-  9.1 To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
-  9.2 Create a new app
-  9.3 On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
-  9.4 Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
-10. On a browser, go to 127.0.0.1:8000
+4. Activate the environment with
+```
+conda activate *name_of_env*
+```
+5. Change the current directory to the spotify_rooms_app folder using 
+```
+cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
+```
+6. Once in the correct cd, install requirements using 
+```
+pip install -r requirements.txt
+```
+7. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
+  7.1 To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
+  7.2 Create a new app
+  7.3 On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
+  7.4 Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
+8. To run the server, cd to where manage.py is located (the same location as step 5) and use 
+```
+python manage.py runserver
+```
+9. On a browser, go to 127.0.0.1:8000
 
