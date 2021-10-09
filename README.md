@@ -14,7 +14,5 @@ To run the app:
 4. Activate the environment with conda activate *name_of_env*
 5. Change the current directory to the spotify_rooms_app folder using cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
 7. Install requirements using pip install -r requirements.txt
-8. To run the server, use python manage.py 0.0.0.0:8000
-9. To go to the app over LAN, use the IPv4 Address of the device running the server. 
-10. This can be found by using the command ipconfig in a command prompt)
-11. Example the the address : 192.168.0.xx:8000 (where xx is specific to device running the server)
+8. To run the server, use python manage.py runserver
+9. On a browser, go to 127.0.0.1:8000
