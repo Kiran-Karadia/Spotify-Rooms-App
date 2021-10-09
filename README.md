@@ -11,23 +11,23 @@ To run the app (WINDOWS):
 1. Create a folder somewhere you'd like to store the project
 2. Open a command prompt, cd to the folder and use 
 ```
-git clone https://github.com/Kiran-Karadia/Spotify-Rooms-App.git
+git clone https://github.com/Kiran-Karadia/Spotify-Rooms-App.git 
 ```
 3. Create a new environment using 
 ```
-conda create --name *name_of_env* python
+conda create --name *name_of_env* python 
 ```
 4. Activate the environment with
 ```
-conda activate *name_of_env*
+conda activate *name_of_env* 
 ```
 5. Change the current directory to the spotify_rooms_app folder using 
 ```
-cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
+cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app 
 ```
 6. Once in the correct cd, install requirements using 
 ```
-pip install -r requirements.txt
+pip install -r requirements.txt 
 ```
 7. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
   7.1 To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
@@ -36,7 +36,7 @@ pip install -r requirements.txt
   7.4 Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
 8. To run the server, cd to where manage.py is located (the same location as step 5) and use 
 ```
-python manage.py runserver
+python manage.py runserver 
 ```
 9. On a browser, go to 127.0.0.1:8000
 
