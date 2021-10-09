@@ -29,7 +29,7 @@ cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
 ```
 pip install -r requirements.txt 
 ```
-7. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
+7. Navigate to Spotify-Rooms-App\spotify_rooms_app\spotify\credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
   * To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
   * Create a new app
   * On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
