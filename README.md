@@ -30,10 +30,12 @@ cd C:\...\...\...\Spotify-Rooms-App\spotify_rooms_app
 pip install -r requirements.txt 
 ```
 7. Navigate to spotify/credentials.py and update the CLIENT_ID and CLIENT_SECRET variables with your own.
-  7.1 To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
-  7.2 Create a new app
-  7.3 On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
-  7.4 Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
+  * To find these, go to https://developer.spotify.com/dashboard/ and log in with your premium spotify account
+  * Create a new app
+  * On the dashboard of the app, you will find the Client ID and Client Secret (32 characters long each)
+  * Click on EDIT SETTNGS and under Redirect URIs put http://127.0.0.1:8000/spotify/redirect (The same as REDIRECT_URI in credentials.py) 
+  * Make sure to save the settings
+  
 8. To run the server, cd to where manage.py is located (the same location as step 5) and use 
 ```
 python manage.py runserver 
