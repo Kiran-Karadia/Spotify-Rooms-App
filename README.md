@@ -9,7 +9,10 @@ Host of the room can edit settings such as allowing guests to play/pause and the
 
 To run the app (WINDOWS):
 1. Create a folder somewhere you'd like to store the project
-2. Use git clone https://github.com/Kiran-Karadia/Spotify-Rooms-App.git
+2. Open a command prompt, cd to the folder and use 
+```
+git clone https://github.com/Kiran-Karadia/Spotify-Rooms-App.git
+```
 3. Create a new environment using 
 ```
 conda create --name *name_of_env* python
