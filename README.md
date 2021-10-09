@@ -16,3 +16,4 @@ To run the app:
 7. Install requirements using pip install -r requirements.txt
 8. To run the server, use python manage.py runserver
 9. On a browser, go to 127.0.0.1:8000
+
