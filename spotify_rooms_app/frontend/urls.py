@@ -9,5 +9,6 @@ urlpatterns = [
     path("", index, name=""), # Same here, needed for the spotifyCallback function 
     path("join", index,),
     path("create", index),
-    path("room/<str:roomCode>", index) # Dynamic URL using the current room code
+    path("room/<str:roomCode>", index), # Dynamic URL using the current room code
+    path("info", index)
 ]
